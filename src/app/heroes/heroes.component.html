@@ -1,0 +1,17 @@
+{{heroFormGroup.value | json}}
+<br>
+
+<form [formGroup]="heroFormGroup">
+  <input type="text" formControlName="name">
+
+</form>
+
+<hr>
+
+<br>
+{{heroFormControl.value|uppercase}}<br>
+<input type="text" [formControl]="heroFormControl">
+<br>
+<span *ngIf="heroFormControl.errors" style="color:red">name is required</span>
+<br>
+{{heroFormControl.errors | json}}
