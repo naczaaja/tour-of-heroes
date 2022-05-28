@@ -1,0 +1,17 @@
+<form [formGroup]="heroFormGroup">
+  <h4>{{ heroFormGroup.get('name')?.value | uppercase }}</h4>
+  <label class="form-label" for="name">Hero name</label>
+  <input class="form-control" type="text" id="name" formControlName="name" >
+</form>
+
+<hr>
+
+<button
+  class="btn btn-secondary"
+  (click)="onBack()">
+  Back
+</button>
+
+<hr>
+
+{{ heroFormGroup.value | json }}

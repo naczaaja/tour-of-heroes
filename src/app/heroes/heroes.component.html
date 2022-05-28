@@ -1,20 +1,14 @@
 <h4>My Heroes</h4>
 
+<app-alert *ngIf="message" [message]="message"></app-alert>
+
 <ul class="list-group">
-  <li class="list-group-item list-group-item-action"
-    [ngClass]="{ 'active': hero.id === heroFormGroup.get('id')?.value }" *ngFor="let hero of heroes"
-    (click)="onSelectHero(hero)">
-    <span class="badge">{{ hero.id }}</span>
-    {{ hero.name }}
+  <li class="list-group-item list-group-item-action" *ngFor="let hero of heroes">
+    <a class="text-decoration-none" routerLink="/hero-form/{{ hero.id }}">
+      <span class="badge">
+        {{ hero.id }}
+      </span>
+      {{hero.name }}
+    </a>
   </li>
 </ul>
-
-<hr>
-
-<form [formGroup]="heroFormGroup">
-  <h4>{{ heroFormGroup.get('name')?.value | uppercase }}</h4>
-  <label class="form-label" for="name">Hero name</label>
-  <input class="form-control" type="text" id="name" formControlName="name">
-</form>
-
-<hr>
