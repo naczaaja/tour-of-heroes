@@ -1,5 +1,6 @@
 //interface | class
 export interface Hero{
   id:number,
-  name:string
+  name:string,
+  power:number
 }
