@@ -1,0 +1,15 @@
+<div>
+  <label for="term">Hero search</label>
+  <input
+  class="form-control"
+  type="text"
+  id="term"
+  [formControl]="termFormControl">
+  <ul class="list-group">
+    <a
+    class="list-group-item"
+    *ngFor="let hero of heroes$ | async"
+    routerLink="/hero-form/{{hero.id}}"
+    >{{hero.name}}</a>
+  </ul>
+</div>

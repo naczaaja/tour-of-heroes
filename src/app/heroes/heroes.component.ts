@@ -10,20 +10,31 @@ import { HeroService } from '../hero.service';
 })
 export class HeroesComponent implements OnInit {
 
-
   heroes: Hero[] = [];
 
   message = '';
 
-
   constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
-    // this.heroFormGroup.setValue(this.hero);
-    this.heroService.getHeroes().subscribe({
-      next: hs => this.heroes = hs,
-      error: err => this.message = err.message
-    });
+    // this.heroes = this.heroService.getHeroes();
+
+    // subscribe (next: fn)
+    // subscribe ({next: fn, error: fn, complete: fn})
+
+    this.heroService.getHeroes()
+      .subscribe({
+        next: hs => this.heroes = hs,
+        error: err => this.message = err.message
+      });
+  }
+
+  onDeleteHero(id: number) {
+    this.heroService
+      .deleteHero(id)
+      .subscribe(
+        () => this.heroes = this.heroes.filter(hero => hero.id !== id)
+      );
   }
 
 }

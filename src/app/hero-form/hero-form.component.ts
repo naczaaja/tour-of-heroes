@@ -23,14 +23,27 @@ export class HeroFormComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id')!);
-    console.log('id', id);
 
-    this.heroService.getHero(id)
+    if (id) {
+      this.heroService.getHero(id)
       .subscribe(hero => this.heroFormGroup.setValue(hero));
+    }
+
   }
 
   onBack() {
     this.location.back();
   }
 
+  onSave() {
+    if (this.heroFormGroup.get('id')?.value) {
+      this.heroService
+        .updateHero(this.heroFormGroup.value)
+        .subscribe(() => this.onBack());
+    } else {
+      this.heroService
+        .addNewHero(this.heroFormGroup.value)
+        .subscribe(() => this.onBack());
+    }
+  }
 }

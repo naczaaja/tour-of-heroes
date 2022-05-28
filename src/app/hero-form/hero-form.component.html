@@ -1,17 +1,16 @@
 <form [formGroup]="heroFormGroup">
-  <h4>{{ heroFormGroup.get('name')?.value | uppercase }}</h4>
+  <h4>{{ heroFormGroup.get("name")?.value | uppercase }}</h4>
   <label class="form-label" for="name">Hero name</label>
-  <input class="form-control" type="text" id="name" formControlName="name" >
+  <input class="form-control" type="text" id="name" formControlName="name" />
 </form>
 
-<hr>
+<hr />
 
-<button
-  class="btn btn-secondary"
-  (click)="onBack()">
-  Back
-</button>
+<div class="d-flex justify-content-between">
+  <button class="btn btn-secondary" (click)="onBack()">Back</button>
+  <button class="btn btn-primary" (click)="onSave()">Save</button>
+</div>
 
-<hr>
+<hr />
 
 {{ heroFormGroup.value | json }}
